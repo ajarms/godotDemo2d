@@ -1,2 +1,2 @@
-# ponGo
-Quick prototype of Pong in Godot 4 with C#
+
+Reusing this Repo for a quick Godot "first 2d game" tutorial
