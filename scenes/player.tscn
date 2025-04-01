@@ -1,19 +1,19 @@
 [gd_scene load_steps=8 format=3 uid="uid://bme6km024y6sj"]
 
-[ext_resource type="Texture2D" uid="uid://bri8doq1u2ifg" path="res://art/playerGrey_up1.png" id="1_7m5fr"]
-[ext_resource type="Script" path="res://Player.cs" id="1_wtb7j"]
-[ext_resource type="Texture2D" uid="uid://dcry8o6f5ad4i" path="res://art/playerGrey_up2.png" id="2_3xt2w"]
-[ext_resource type="Texture2D" uid="uid://buv3ba3ti5ymd" path="res://art/playerGrey_walk1.png" id="3_566u7"]
-[ext_resource type="Texture2D" uid="uid://cgfcfmen3w675" path="res://art/playerGrey_walk2.png" id="4_rlxam"]
+[ext_resource type="Script" path="res://scripts/Player.cs" id="1_n8mkr"]
+[ext_resource type="Texture2D" uid="uid://bri8doq1u2ifg" path="res://art/playerGrey_up1.png" id="2_wfnin"]
+[ext_resource type="Texture2D" uid="uid://dcry8o6f5ad4i" path="res://art/playerGrey_up2.png" id="3_lwgwi"]
+[ext_resource type="Texture2D" uid="uid://buv3ba3ti5ymd" path="res://art/playerGrey_walk1.png" id="4_hdb82"]
+[ext_resource type="Texture2D" uid="uid://cgfcfmen3w675" path="res://art/playerGrey_walk2.png" id="5_fegkd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pu4g8"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_7m5fr")
+"texture": ExtResource("2_wfnin")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_3xt2w")
+"texture": ExtResource("3_lwgwi")
 }],
 "loop": true,
 "name": &"up",
@@ -21,10 +21,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_566u7")
+"texture": ExtResource("4_hdb82")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_rlxam")
+"texture": ExtResource("5_fegkd")
 }],
 "loop": true,
 "name": &"walk",
@@ -36,7 +36,7 @@ radius = 27.0
 height = 66.0
 
 [node name="Player" type="Area2D"]
-script = ExtResource("1_wtb7j")
+script = ExtResource("1_n8mkr")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -46,3 +46,5 @@ animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_aptvj")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
