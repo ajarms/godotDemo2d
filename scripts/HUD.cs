@@ -15,7 +15,7 @@ public partial class HUD : CanvasLayer
         this.GetNode<Timer>("MessageTimer").Start();
     }
 
-    public async Task ShowGameOver(){
+    async public void ShowGameOver(){
         ShowMessage("Game Over");
 
         var messageTimer = this.GetNode<Timer>("MessageTimer");
@@ -31,5 +31,14 @@ public partial class HUD : CanvasLayer
 
     public void UpdateScoreLabel(int score){
         this.GetNode<Label>("ScoreLabel").Text = score.ToString();
+    }
+
+    private void OnStartButtonPressed(){
+        this.GetNode<Button>("StartButton").Hide();
+        this.EmitSignal(SignalName.StartGame);
+    }
+
+    private void OnMessageTimerTimeout(){
+        this.GetNode<Label>("Message").Hide();
     }
 }

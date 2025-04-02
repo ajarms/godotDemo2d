@@ -10,12 +10,14 @@ public partial class Main : Node
 
     public override void _Ready()
     {
-        NewGame();
+        // NewGame();
     }
 
     public void GameOver(){
         this.GetNode<Timer>("MobTimer").Stop();
         this.GetNode<Timer>("ScoreTimer").Stop();
+
+        this.GetNode<HUD>("HUD").ShowGameOver();
     }
 
     public void NewGame(){
@@ -23,6 +25,13 @@ public partial class Main : Node
 
         var playerInstance = this.GetNode<Player>("Player");
         var startPos = this.GetNode<Marker2D>("StartPosition");
+
+        var hud = this.GetNode<HUD>("HUD");
+        hud.UpdateScoreLabel(_score);
+        hud.ShowMessage("Get Ready!");
+
+        this.GetTree().CallGroup("mobs", Node.MethodName.QueueFree);
+
         playerInstance.Start(startPos.Position);
 
         this.GetNode<Timer>("StartTimer").Start();
@@ -67,5 +76,6 @@ public partial class Main : Node
     public void OnScoreTimerTimeout(){
         // score based on how long the player survives
         _score++;
+        this.GetNode<HUD>("HUD").UpdateScoreLabel(_score);
     }
 }
