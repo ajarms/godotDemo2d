@@ -17,6 +17,9 @@ public partial class Main : Node
         this.GetNode<Timer>("MobTimer").Stop();
         this.GetNode<Timer>("ScoreTimer").Stop();
 
+        this.GetNode<AudioStreamPlayer>("Music").Stop();
+        this.GetNode<AudioStreamPlayer>("DeathSound").Play();
+
         this.GetNode<HUD>("HUD").ShowGameOver();
     }
 
@@ -33,6 +36,8 @@ public partial class Main : Node
         this.GetTree().CallGroup("mobs", Node.MethodName.QueueFree);
 
         playerInstance.Start(startPos.Position);
+        
+        this.GetNode<AudioStreamPlayer>("Music").Play();
 
         this.GetNode<Timer>("StartTimer").Start();
     }
